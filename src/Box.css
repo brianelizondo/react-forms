@@ -1,3 +1,7 @@
 .Box{
-    
+    margin-bottom: 20px;
+}
+
+.Box div{
+    float:"left" !important;
 }

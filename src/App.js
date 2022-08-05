@@ -5,7 +5,7 @@ import BoxList from "./BoxList";
 function App(){
     return (
         <div className="App">
-            <div className="App-boxlist">ç
+            <div className="App-boxlist">
                 <BoxList />
             </div>
         </div>

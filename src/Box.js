@@ -1,8 +1,16 @@
 import React, { useState } from "react";
+import "./Box.css";
 
-function Box({ color, width, height }){
+function Box({ color, width, height, deleteBox, id }){
+    const handleClick = () => {
+        deleteBox(id);
+    }
+
     return (
-        <div className="Box" style={`background-color: ${color}; height: ${width}px; width: ${height}px;`}></div>
+        <div className="Box">
+            <div style={{backgroundColor: color, width:`${width}px`, height:`${height}px`}}></div>
+            <button onClick={handleClick}>X</button>
+        </div>
     );
 }
 
