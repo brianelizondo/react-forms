@@ -8,7 +8,11 @@ import EditTodoForm from "./EditTodoForm";
 function TodoList(){
     const INITIAL_STATE = [];
     const EDIT_INITIAL_STATE = { show: false, id: "", todo: "" };
-    const [todos, setTodos] = useState(INITIAL_STATE);
+    const [todos, setTodos] = useState(() => {
+        let value;
+        value = JSON.parse(window.localStorage.getItem('todos') || INITIAL_STATE);;
+        return value;
+    });
     const [editTodo, setEditTodo] = useState(EDIT_INITIAL_STATE);
 
     const showEditForm = task => {
@@ -18,9 +22,14 @@ function TodoList(){
         });
     };
 
+    const saveLocal = todos => {
+        window.localStorage.setItem('todos', JSON.stringify(todos));
+    };
+
     const addTask = task => {        
         let newTask = { ...task, id: uuid(), completed: false };
         setTodos(tasks => [...tasks, newTask]);
+        saveLocal([...todos, newTask]);
     };
     const editTask = updateTask => {
         let updateTodos = todos.map(todo => {
@@ -30,6 +39,7 @@ function TodoList(){
             return {...todo}
         });
         setTodos(tasks => updateTodos);
+        saveLocal(updateTodos);
         setEditTodo(EDIT_INITIAL_STATE);
     };
     const completedTask = idTask => {
@@ -40,9 +50,12 @@ function TodoList(){
             return {...todo}
         });
         setTodos(tasks => updateTodo);
+        saveLocal(updateTodo);
     };
     const deleteTask = idTask => {
-        setTodos(todos.filter(todo => todo.id !== idTask));
+        let newTodos = todos.filter(todo => todo.id !== idTask);
+        setTodos(newTodos);
+        saveLocal(newTodos);
     };
 
     return (
