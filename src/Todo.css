@@ -1,0 +1,10 @@
+.Todo{
+    padding: 5px 0px;
+}
+.Todo button{
+    margin-left: 5px;
+}
+.Todo-completed{
+    text-decoration:line-through;
+    color: gray;
+}
