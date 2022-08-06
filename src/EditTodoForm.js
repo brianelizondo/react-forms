@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-function NewTodoForm({ addTask }){
-    const INITIAL_STATE = { task: "" };
-    const [formData, setFormData] = useState(INITIAL_STATE);
+function EditTodoForm({ id, task, editTask }){
+    const [formData, setFormData] = useState({ task });
 
     const handleChange = evt => {
         const { name, value } = evt.target;
@@ -13,26 +12,25 @@ function NewTodoForm({ addTask }){
     }
     const handleSubmit = evt => {
         evt.preventDefault();
-        addTask(formData);
-        setFormData(INITIAL_STATE);
+        editTask({id, task: formData.task});
     }
 
     return (
-        <div className="NewTodoForm">
+        <div className="EditTodoForm">
             <form onSubmit={handleSubmit}>
-                <label htmlFor="task">New Task:</label>
+                <label htmlFor="task">Edit Task:</label>
                 <input 
                     name="task" 
                     id="task"
-                    placeholder="new task"
+                    placeholder="task"
                     value={formData.task} 
                     onChange={handleChange}
                 />
                 
-                <button>Add Task!</button>
+                <button>Edit Task!</button>
             </form>
         </div>
     );
 }
 
-export default NewTodoForm;
+export default EditTodoForm;
