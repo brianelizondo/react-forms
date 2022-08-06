@@ -12,13 +12,14 @@ function Todo({ task, id, showEditForm, completedTaskStatus, completedTask, dele
         deleteTask(id);
     }
 
+    const completedButtonText = completedTaskStatus == false ? "Mark as completed" : "Mark as not completed";
     const classStyle = completedTaskStatus == false ? "Todo" : "Todo Todo-completed";
 
     return (
         <div className={classStyle}>
             { task }
             <button onClick={handleEdit}>Edit</button>
-            {!completedTaskStatus && <button onClick={handleCompleted}>Mark as completed</button>}
+            <button onClick={handleCompleted}>{completedButtonText}</button>
             <button onClick={handleDelete}>X</button>
         </div>
     );

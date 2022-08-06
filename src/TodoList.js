@@ -35,7 +35,7 @@ function TodoList(){
     const completedTask = idTask => {
         let updateTodo = todos.map(todo => {
             if(todo.id === idTask){
-                return { ...todo, completed: true }
+                return { ...todo, completed: !todo.completed }
             }
             return {...todo}
         });
